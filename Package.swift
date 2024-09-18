@@ -17,7 +17,7 @@ let package = Package(
     )
   ],
   dependencies: [
-    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.4"),
+    .package(url: "https://github.com/christianflanders/swift-snapshot-testing", branch: "main"),
 .package(url: "https://github.com/sjavora/swift-syntax-xcframeworks.git", from: "510.0.1"),
   ],
   targets: [
