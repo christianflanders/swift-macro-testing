@@ -200,22 +200,11 @@ public func assertMacro(
           origSourceFile: .init(moduleName: "TestModule", fullFilePath: "Test.swift")
         ]
       )
-      #if canImport(SwiftSyntax600)
-        var expandedSourceFile = origSourceFile.expand(
-          macros: macros,
-          contextGenerator: { syntax in
-            BasicMacroExpansionContext(
-              sharingWith: context, lexicalContext: syntax.allMacroLexicalContexts())
-          },
-          indentationWidth: indentationWidth
-        )
-      #else
         var expandedSourceFile = origSourceFile.expand(
           macros: macros,
           in: context,
           indentationWidth: indentationWidth
         )
-      #endif
 
       var offset = 0
 
@@ -337,19 +326,11 @@ public func assertMacro(
             fixedSourceFile: .init(moduleName: "TestModule", fullFilePath: "Test.swift")
           ]
         )
-        #if canImport(SwiftSyntax600)
-          expandedSourceFile = fixedSourceFile.expand(
-            macros: macros,
-            contextGenerator: { _ in context },
-            indentationWidth: indentationWidth
-          )
-        #else
           expandedSourceFile = fixedSourceFile.expand(
             macros: macros,
             in: context,
             indentationWidth: indentationWidth
           )
-        #endif
       } else if fixedSource != nil {
         offset += 1
         assertInlineSnapshot(
